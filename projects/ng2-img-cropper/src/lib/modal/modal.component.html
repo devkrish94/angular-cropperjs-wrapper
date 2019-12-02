@@ -1,0 +1,73 @@
+<div class="upload-modal-container">
+  <div class="title">
+    <h4>Upload Image</h4>
+  </div>
+  <div class="upload-btn">
+    <input type="file" (change)="fileChangeEvent($event)"
+    name='fileName' accept="image/*" #fileType />
+    <div class="btn">
+      <i>+</i>
+      <span>Upload Image</span>
+    </div>
+  </div>
+  <div *ngIf="!isValidImage" style="text-align: center; color: #ff0000">Invalid file type</div>
+  <hr class="border-bottom">
+
+<!-- <div class="event-btn" *ngIf="imageChangedEvent!==''" >
+  <button (click)="rotateLeft()">Rotate left</button>
+  <button (click)="rotateRight()">Rotate right</button>
+  <button (click)="flipHorizontal()">Flip horizontal</button>
+  <button (click)="flipVertical()">Flip vertical</button>
+</div> -->
+
+  <div>
+
+    <!-- <image-cropper
+        [imageChangedEvent]="imageChangedEvent"
+        [maintainAspectRatio]="data.maintainAspectRatio"
+        [aspectRatio]="data.aspectRatio"
+
+        [resizeToWidth]="data.imageSize"
+        [cropperMinWidth]="128"
+        [onlyScaleDown]="true"
+        [roundCropper]="false"
+        format="png"
+        outputType="base64"
+        (imageCropped)="imageCropped($event)"
+        (imageLoaded)="imageLoaded()"
+        (cropperReady)="cropperReady()"
+        (loadImageFailed)="loadImageFailed()"
+        [style.display]="showCropper ? null : 'none'"
+        [widthOfCropper]="data.width"
+        [heightOfCropper]="data.height"
+    ></image-cropper> -->
+    <angular-cropper *ngIf = "originalImage" [imageUrl] ="originalImage.src" (export) = "onExport($event)" ></angular-cropper>
+  </div>
+<div *ngIf="data.image!== ''">
+  <div *ngIf="!selected.image" class="image-library" fxFlex="1 0 auto" fxLayout="column">
+    <h5 >Choose from library</h5>
+      <div cols="3" rowHeight="1:1.5" gutterSize="10px">
+          <div class="image-list" [ngClass]="{'selected': croppedImage === i }" *ngFor="let template of data.image; let i=index;"
+          (click)="onTemplateChange(i)"><img [src]="template.url"  />
+            <a class="s-36 mat-icon material-icons primary-50-fg">check_circle</a>
+          </div>
+      </div>
+  </div>
+</div>
+
+  <hr class="border-bottom" *ngIf="data.image!== ''">
+
+  <!-- <div *ngFor="let item of data" >
+    <img [src]='item.url' alt='abc'>
+  </div> -->
+  <mat-dialog-actions align="end">
+      <button mat-button mat-dialog-close>Cancel</button>
+      <button *ngIf="selected.image" mat-button
+      [mat-dialog-close]="croppedImage"
+      cdkFocusInitial class="upload-btn-color">Upload</button>
+      <button *ngIf="selected.template"
+      mat-button [mat-dialog-close]="croppedImage"
+      cdkFocusInitial>Select</button>
+  </mat-dialog-actions>
+  <!-- <p>{{ croppedImage }}</p> -->
+</div>
