@@ -48,7 +48,6 @@ export class CropperComponent implements OnInit {
      */
     imageLoaded(ev: Event) {
 
-        console.log(ev);
         
         //
         // Unset load error state
@@ -97,8 +96,8 @@ export class CropperComponent implements OnInit {
         // extend default with custom config
         this.cropperOptions = Object.assign({
             aspectRatio,
-            movable: false,
-            scalable: false,
+            movable: true,
+            scalable: true,
             zoomable: true,
             viewMode: 1,
             checkCrossOrigin: true
@@ -115,7 +114,6 @@ export class CropperComponent implements OnInit {
      */
     imageLoadError(event: any) {
 
-        console.log(event);
         
         //
         // Set load error state
@@ -156,7 +154,7 @@ export class CropperComponent implements OnInit {
             }
             canvas.toBlob(blob => resolve({ blob }));
         });
-        console.log(canvas.toDataURL('image/png'));
+        // console.log(canvas.toDataURL('image/png'));
         //
         // Emit export data when promise is ready
         promise.then(res => {

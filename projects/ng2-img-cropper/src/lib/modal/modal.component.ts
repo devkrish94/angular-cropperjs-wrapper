@@ -1,8 +1,10 @@
+import { CropperComponent } from './../cropper/cropper.component';
 import { DomSanitizer } from '@angular/platform-browser';
 // import { ImageCroppedEvent } from '../image-cropper/interfaces';
 // import { ImageCropperComponent } from '../image-cropper/component/image-cropper.component';
 import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
 import { Component, OnInit, ViewChild, Inject, EventEmitter, Output, ElementRef, ChangeDetectorRef } from '@angular/core';
+
 
 @Component({
   // tslint:disable-next-line:component-selector
@@ -25,7 +27,10 @@ export class ModalComponent implements OnInit {
   isValidImage = true;
 
 
-  constructor(@Inject(MAT_DIALOG_DATA) public data: any, private sanitizer: DomSanitizer, private cd: ChangeDetectorRef ) {
+  constructor(@Inject(MAT_DIALOG_DATA) public data: any, 
+    private sanitizer: DomSanitizer, 
+    private cd: ChangeDetectorRef,
+    private dialogRef: MatDialogRef<ModalComponent> ) {
     // console.log(this.data);
 
   }
@@ -35,11 +40,9 @@ export class ModalComponent implements OnInit {
   safeImgDataUrl: any;
   originalImage: HTMLImageElement;
   originalSize: any;
-
+  @ViewChild('angularCropper') public angularCropper: CropperComponent;
   fileChangeEvent(event: any): void {
-    console.log(event);
     const type = event.target.value.split('.').pop();
-    console.log(type);
 
       if (type.toLowerCase() === 'jpg' || type.toLowerCase() === 'jpeg' || type.toLowerCase() === 'png'
       || type.toLowerCase() === 'bmp' || type.toLowerCase() === 'gif'|| type.toLowerCase() === 'tiff'  ) {
@@ -93,7 +96,6 @@ private loadBase64Image(imageBase64: string): void {
   //     this.cd.markForCheck();
   // };
   this.originalImage.src = imageBase64;
-  console.log(this.originalImage.src);
   
 }
   // imageCropped(event: ImageCroppedEvent) {
@@ -112,18 +114,18 @@ private loadBase64Image(imageBase64: string): void {
   loadImageFailed () {
     // console.log('Load failed');
   }
-  // rotateLeft() {
-  //   this.imageCropper.rotateLeft();
-  // }
-  // rotateRight() {
-  //   this.imageCropper.rotateRight();
-  // }
-  // flipHorizontal() {
-  //   this.imageCropper.flipHorizontal();
-  // }
-  // flipVertical() {
-  //   this.imageCropper.flipVertical();
-  // }
+  rotateLeft() {
+    this.angularCropper.cropper.rotate(-90);
+  }
+  rotateRight() {
+    this.angularCropper.cropper.rotate(90);
+  }
+  flipHorizontal() {
+    this.angularCropper.cropper.scale(-1,1);
+  }
+  flipVertical() {
+    this.angularCropper.cropper.scale(1,-1);  
+  }
 
 
   onTemplateChange(i) {
@@ -137,8 +139,14 @@ private loadBase64Image(imageBase64: string): void {
 
   }
 
-  onExport(e) {
-    console.log(e);
-    
+  onExport() {
+   this.croppedImage = this.angularCropper.cropper.getCroppedCanvas().toDataURL('image/png');
+  //  console.log(this.croppedImage);
+   this.dialogRef.close(this.croppedImage);
+   
+  }
+  cropperTouchStart(event){
+    event.stopPropagation();
+    event.preventDefault(); //Most important
   }
 }

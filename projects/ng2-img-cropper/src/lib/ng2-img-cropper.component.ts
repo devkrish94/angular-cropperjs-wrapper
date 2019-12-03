@@ -39,9 +39,13 @@ export class Ng2ImgCropperComponent implements OnInit {
         width: this.widthOfCropper,
         height: this.heightOfCropper,
         imageSize: this.resizeToWidth,
-        aspectRatio: this.aspectRatio,
         maintainAspectRatio: this.maintainAspectRatio,
-        selected: this.selected
+        selected: this.selected,
+        responsive: true,
+        rotatable : true,
+        scalable: true,
+        minCropBoxWidth: 100,
+        minCropBoxHeight: 200
       }
     });
 

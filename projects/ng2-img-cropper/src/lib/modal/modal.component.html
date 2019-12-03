@@ -13,12 +13,12 @@
   <div *ngIf="!isValidImage" style="text-align: center; color: #ff0000">Invalid file type</div>
   <hr class="border-bottom">
 
-<!-- <div class="event-btn" *ngIf="imageChangedEvent!==''" >
+<div class="event-btn" *ngIf="originalImage" >
   <button (click)="rotateLeft()">Rotate left</button>
   <button (click)="rotateRight()">Rotate right</button>
   <button (click)="flipHorizontal()">Flip horizontal</button>
   <button (click)="flipVertical()">Flip vertical</button>
-</div> -->
+</div>
 
   <div>
 
@@ -41,8 +41,12 @@
         [widthOfCropper]="data.width"
         [heightOfCropper]="data.height"
     ></image-cropper> -->
-    <angular-cropper *ngIf = "originalImage" [imageUrl] ="originalImage.src" (export) = "onExport($event)" ></angular-cropper>
+    <angular-cropper *ngIf = "originalImage" #angularCropper 
+      [cropperOptions] = "data" 
+      [imageUrl] ="originalImage.src" (touchstart)="cropperTouchStart($event)" 
+       ></angular-cropper>
   </div>
+  <!-- <button (click) = "onExport()">image</button> -->
 <div *ngIf="data.image!== ''">
   <div *ngIf="!selected.image" class="image-library" fxFlex="1 0 auto" fxLayout="column">
     <h5 >Choose from library</h5>
@@ -62,8 +66,8 @@
   </div> -->
   <mat-dialog-actions align="end">
       <button mat-button mat-dialog-close>Cancel</button>
-      <button *ngIf="selected.image" mat-button
-      [mat-dialog-close]="croppedImage"
+      <button *ngIf="selected.image" mat-button (click) = "onExport()"
+      
       cdkFocusInitial class="upload-btn-color">Upload</button>
       <button *ngIf="selected.template"
       mat-button [mat-dialog-close]="croppedImage"
