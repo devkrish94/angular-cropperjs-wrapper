@@ -4,6 +4,7 @@ import { DomSanitizer } from '@angular/platform-browser';
 // import { ImageCropperComponent } from '../image-cropper/component/image-cropper.component';
 import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
 import { Component, OnInit, ViewChild, Inject, EventEmitter, Output, ElementRef, ChangeDetectorRef } from '@angular/core';
+import Cropper from 'cropperjs';
 
 
 @Component({
@@ -25,6 +26,8 @@ export class ModalComponent implements OnInit {
   max = 100;
   value = 0;
   isValidImage = true;
+  public cropper: Cropper;
+
 
 
   constructor(@Inject(MAT_DIALOG_DATA) public data: any, 
@@ -32,6 +35,10 @@ export class ModalComponent implements OnInit {
     private cd: ChangeDetectorRef,
     private dialogRef: MatDialogRef<ModalComponent> ) {
     // console.log(this.data);
+
+    this.originalImage = data.originalImage;
+    this.selected.image = data.originalImage ? true : false;
+    this.selected.template = data.originalImage ? false: false;
 
   }
   // @ViewChild(ImageCropperComponent) imageCropper: ImageCropperComponent;
@@ -90,13 +97,13 @@ private loadBase64Image(imageBase64: string): void {
   this.originalBase64 = imageBase64;
   this.safeImgDataUrl = this.sanitizer.bypassSecurityTrustResourceUrl(imageBase64);
   this.originalImage = new Image();
+  
   // this.originalImage.onload = () => {
   //     this.originalSize.width = this.originalImage.width;
   //     this.originalSize.height = this.originalImage.height;
   //     this.cd.markForCheck();
   // };
   this.originalImage.src = imageBase64;
-  
 }
   // imageCropped(event: ImageCroppedEvent) {
   //   this.croppedImage = event.base64;
@@ -121,10 +128,10 @@ private loadBase64Image(imageBase64: string): void {
     this.angularCropper.cropper.rotate(90);
   }
   flipHorizontal() {
-    this.angularCropper.cropper.scale(-1,1);
+    this.angularCropper.cropper.scale(-1, 1);
   }
   flipVertical() {
-    this.angularCropper.cropper.scale(1,-1);  
+    this.angularCropper.cropper.scale(1, -1);
   }
 
 
@@ -140,13 +147,68 @@ private loadBase64Image(imageBase64: string): void {
   }
 
   onExport() {
-   this.croppedImage = this.angularCropper.cropper.getCroppedCanvas().toDataURL('image/png');
+    // const canvas = this.angularCropper.getCroppedCanvas();
+    console.log(this.data);
+    
+
+    this.croppedImage = this.angularCropper.cropper.getCroppedCanvas();
   //  console.log(this.croppedImage);
-   this.dialogRef.close(this.croppedImage);
-   
+    const canvas = document.createElement('canvas');
+      const ctx = canvas.getContext('2d');
+      const height = this.data.aspectRatio ? this.data.width / this.data.aspectRatio : this.data.height;
+      console.log(height);
+      
+
+    // set its dimension to target size
+    canvas.width = this.data.width;
+    canvas.height = height;
+
+    // draw source image into the off-screen canvas:
+    ctx.drawImage(this.croppedImage, 0, 0, this.data.width, height);
+   this.dialogRef.close(canvas.toDataURL());
+
   }
   cropperTouchStart(event){
     event.stopPropagation();
     event.preventDefault(); //Most important
   }
+
+//   exportCanvas(base64?: any) {
+
+//     //
+//     // Get and set image, crop and canvas data
+//     const imageData = this.cropper.getImageData();
+//     const cropData = this.cropper.getCropBoxData();
+//     const canvas = this.cropper.getCroppedCanvas();
+//     canvas.width = 100;
+//     canvas.height = 100;
+//     console.log(canvas);
+    
+//     const data = { imageData, cropData };
+
+//     //
+//     // Create promise to resolve canvas data
+//     const promise = new Promise(resolve => {
+
+//         //
+//         // Validate base64
+//         if (base64) {
+            
+            
+//             //
+//             // Resolve promise with dataUrl
+//             return resolve({
+//                 dataUrl: canvas.toDataURL('image/png')
+//             });
+//         }
+//         canvas.toBlob(blob => resolve({ blob }));
+//     });
+//     // console.log(canvas.toDataURL('image/png'));
+//     //
+//     // Emit export data when promise is ready
+//     promise.then(res => {
+//         // this.export.emit(Object.assign(data, res));
+//     });
+// }
+
 }

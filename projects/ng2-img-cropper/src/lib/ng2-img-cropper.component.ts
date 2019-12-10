@@ -3,7 +3,8 @@ import { MatDialog } from '@angular/material';
 import { ModalComponent } from './modal/modal.component';
 
 @Component({
-  selector: 'app-ng2-img-cropper',
+  // tslint:disable-next-line: component-selector
+  selector: 'gobiggi-cropperjs-wrapper',
   templateUrl: './ng2-img-cropper.component.html',
   styleUrls: ['./ng2-img-cropper.component.css']
 })
@@ -16,11 +17,12 @@ export class Ng2ImgCropperComponent implements OnInit {
   @Input() heightOfCropper ;
   @Output() croppedImage = new EventEmitter();
   @Input() resizeToWidth = 128;
-  @Input() aspectRatio = '1/1';
+  @Input() aspectRatio = NaN;
   @Input() maintainAspectRatio = true;
   @Input() height;
   @Input() width;
   @Input() selected = '' ;
+  @Input() originalImage ;
 
 
   ngOnInit() {
@@ -38,14 +40,20 @@ export class Ng2ImgCropperComponent implements OnInit {
         image: this.image,
         width: this.widthOfCropper,
         height: this.heightOfCropper,
-        imageSize: this.resizeToWidth,
-        maintainAspectRatio: this.maintainAspectRatio,
+        // imageSize: this.resizeToWidth,
+        // maintainAspectRatio: this.maintainAspectRatio,
+        aspectRatio: this.aspectRatio,
         selected: this.selected,
+        cropBoxMovable: false,
+        cropBoxResizable: false,
         responsive: true,
         rotatable : true,
         scalable: true,
         minCropBoxWidth: 100,
-        minCropBoxHeight: 200
+        minCropBoxHeight: 200,
+        modal: false,
+        originalImage: this.originalImage,
+        dragMode: 'move'
       }
     });
 

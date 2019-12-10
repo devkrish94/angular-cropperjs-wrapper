@@ -114,7 +114,6 @@ export class CropperComponent implements OnInit {
      */
     imageLoadError(event: any) {
 
-        
         //
         // Set load error state
         this.loadError = true;
@@ -134,7 +133,10 @@ export class CropperComponent implements OnInit {
         // Get and set image, crop and canvas data
         const imageData = this.cropper.getImageData();
         const cropData = this.cropper.getCropBoxData();
-        const canvas = this.cropper.getCroppedCanvas();
+        const canvas = this.cropper.getCroppedCanvas({width: 150, height: 100});
+        // canvas.width = 100;
+        // canvas.height = 100;
+        // console.log(canvas);
         const data = { imageData, cropData };
 
         //
@@ -154,7 +156,7 @@ export class CropperComponent implements OnInit {
             }
             canvas.toBlob(blob => resolve({ blob }));
         });
-        // console.log(canvas.toDataURL('image/png'));
+        console.log(canvas.toDataURL('image/png'));
         //
         // Emit export data when promise is ready
         promise.then(res => {

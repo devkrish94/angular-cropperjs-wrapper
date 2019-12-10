@@ -2,7 +2,7 @@
   <div class="title">
     <h4>Upload Image</h4>
   </div>
-  <div class="upload-btn">
+  <div class="upload-btn" *ngIf="!originalImage">
     <input type="file" (change)="fileChangeEvent($event)"
     name='fileName' accept="image/*" #fileType />
     <div class="btn">
@@ -18,6 +18,7 @@
   <button (click)="rotateRight()">Rotate right</button>
   <button (click)="flipHorizontal()">Flip horizontal</button>
   <button (click)="flipVertical()">Flip vertical</button>
+  <button (click)="angularCropper.cropper.reset()">reset cropper</button>
 </div>
 
   <div>
@@ -43,11 +44,10 @@
     ></image-cropper> -->
     <angular-cropper *ngIf = "originalImage" #angularCropper 
       [cropperOptions] = "data" 
-      [imageUrl] ="originalImage.src" (touchstart)="cropperTouchStart($event)" 
+      [imageUrl] ="originalImage.src ? originalImage.src : originalImage" (touchstart)="cropperTouchStart($event)" 
        ></angular-cropper>
   </div>
-  <!-- <button (click) = "onExport()">image</button> -->
-<div *ngIf="data.image!== ''">
+<div *ngIf="data.image!== '' ">
   <div *ngIf="!selected.image" class="image-library" fxFlex="1 0 auto" fxLayout="column">
     <h5 >Choose from library</h5>
       <div cols="3" rowHeight="1:1.5" gutterSize="10px">
