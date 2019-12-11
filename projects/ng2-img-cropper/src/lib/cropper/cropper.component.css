@@ -5,7 +5,7 @@
 .cropper img {
     max-width: 100%;
     max-height: 100%;
-    height: auto;
+    height: 70vh;
 }
 
 .cropper-wrapper {

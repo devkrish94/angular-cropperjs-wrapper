@@ -4,8 +4,6 @@ import { CommonModule } from '@angular/common';
 import { Ng2ImgCropperComponent } from './ng2-img-cropper.component';
 import { ModalComponent } from './modal/modal.component';
 import { MatGridListModule, MatDialogModule, MatSliderModule } from '@angular/material';
-import { BrowserModule } from '@angular/platform-browser';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule } from '@angular/common/http';
 import { CropperComponent } from './cropper/cropper.component';
 @NgModule({

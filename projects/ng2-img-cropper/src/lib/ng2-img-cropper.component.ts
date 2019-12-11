@@ -19,8 +19,8 @@ export class Ng2ImgCropperComponent implements OnInit {
   @Input() resizeToWidth = 128;
   @Input() aspectRatio = NaN;
   @Input() maintainAspectRatio = true;
-  @Input() height;
-  @Input() width;
+  @Input() heightOfDialog;
+  @Input() widthOfDialog;
   @Input() selected = '' ;
   @Input() originalImage ;
 
@@ -34,8 +34,8 @@ export class Ng2ImgCropperComponent implements OnInit {
   openDialog() {
 
     const dialogRef = this.dialog.open(ModalComponent, {
-      width: window.innerWidth<960 ? this.width +'%' : '50%',
-      height: window.innerHeight<960 ? this.height +'%' : '80%',
+      width: window.innerWidth<960 ? this.widthOfDialog +'%' : '50%',
+      height: window.innerHeight<960 ? this.heightOfDialog +'%' : '80%',
       data: {
         image: this.image,
         width: this.widthOfCropper,

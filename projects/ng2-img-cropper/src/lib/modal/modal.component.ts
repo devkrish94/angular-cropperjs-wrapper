@@ -27,6 +27,8 @@ export class ModalComponent implements OnInit {
   value = 0;
   isValidImage = true;
   public cropper: Cropper;
+  xAxisState = 1;
+  yAxisState = 1;
 
 
 
@@ -79,9 +81,6 @@ loadImageFile(file: File): void {
       const imageType = file.type;
       if (this.isValidImageType(imageType)) {
         this.loadBase64Image(event.target.result);
-          // resetExifOrientation(event.target.result)
-          //     .then((resultBase64: string) => this.loadBase64Image(resultBase64))
-          //     .catch(() => this.loadImageFailed.emit());
       } else {
           // this.loadImageFailed.emit();
       }
@@ -95,9 +94,10 @@ private isValidImageType(type: string): boolean {
 
 private loadBase64Image(imageBase64: string): void {
   this.originalBase64 = imageBase64;
+
   this.safeImgDataUrl = this.sanitizer.bypassSecurityTrustResourceUrl(imageBase64);
   this.originalImage = new Image();
-  
+
   // this.originalImage.onload = () => {
   //     this.originalSize.width = this.originalImage.width;
   //     this.originalSize.height = this.originalImage.height;
@@ -128,10 +128,12 @@ private loadBase64Image(imageBase64: string): void {
     this.angularCropper.cropper.rotate(90);
   }
   flipHorizontal() {
-    this.angularCropper.cropper.scale(-1, 1);
+    this.xAxisState *= -1;
+    this.angularCropper.cropper.scaleX(this.xAxisState);
   }
   flipVertical() {
-    this.angularCropper.cropper.scale(1, -1);
+    this.yAxisState *= -1;
+    this.angularCropper.cropper.scaleY(this.yAxisState);
   }
 
 
