@@ -1,27 +1,22 @@
-# Ng2ImgCropperApp
+# GoBiggi-CropperJs-Wrapper
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 7.2.1.
+This is an image cropping tool made in angular 7 and angular material using the concepts of cropper.js library. It opens the cropper in the dialog along with some default images where the user can either choose the images from the predefined ones he/she can upload it from the local machine.
 
-## Development server
+## Install from NPM
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+``` npm install gobiggi-cropperjs-wrapper --save ```
 
-## Code scaffolding
+## Usage
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+```<>```
 
-## Build
+## Settings
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
-
-## Running unit tests
-
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+1. image: string[] - array of default image urls
+2. croppedImage - event fired after the cropper dialog is closed; returns base64 of the cropped image or the index of the selected image from the set of default image URLs
+3. aspectRatio: number - aspect ratio of the cropper; default is 1:1
+4. widthOfDialog: number - width of the cropper dialog 
+5. heightOfDialog: number - height of the croper dialog
+6. selected: number - default selected image from the set of default image urls
+7. widthOfCropper: number - width of the cropped image
+8. heightOfCropper: number - height of the cropped image
