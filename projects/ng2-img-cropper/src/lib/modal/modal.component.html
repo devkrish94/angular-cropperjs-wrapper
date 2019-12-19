@@ -19,6 +19,10 @@
   <button (click)="flipHorizontal()">Flip horizontal</button>
   <button (click)="flipVertical()">Flip vertical</button>
   <button (click)="angularCropper.cropper.reset()">reset cropper</button>
+  <button (click)="angularCropper.cropper.zoom(0.1)">Zoom</button>
+  <div>
+    <mat-slider (change) = "onSliderChange($event.value)" min="1" max="10" step="0.5" [value]="initalSliderValue"></mat-slider>
+  </div>
 </div>
 
   <div>
@@ -44,6 +48,7 @@
     ></image-cropper> -->
     <angular-cropper *ngIf = "originalImage" #angularCropper 
       [cropperOptions] = "data" 
+      [cropbox] = "cropBox"
       [imageUrl] ="originalImage.src ? originalImage.src : originalImage" (touchstart)="cropperTouchStart($event)" 
        ></angular-cropper>
   </div>
@@ -64,7 +69,9 @@
   <!-- <div *ngFor="let item of data" >
     <img [src]='item.url' alt='abc'>
   </div> -->
+ 
   <mat-dialog-actions align="end">
+      <button mat-button *ngIf="selected.image" (click) = "onClearClick()" >Clear</button>
       <button mat-button mat-dialog-close>Cancel</button>
       <button *ngIf="selected.image" mat-button (click) = "onExport()"
       

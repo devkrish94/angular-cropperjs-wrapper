@@ -23,6 +23,12 @@ export class Ng2ImgCropperComponent implements OnInit {
   @Input() widthOfDialog;
   @Input() selected = '' ;
   @Input() originalImage ;
+  @Input() cropBoxMovable = true;
+  @Input() cropBoxResizable = true;
+  @Input() minCropBoxWidth = 0;
+  @Input() minCropBoxHeight = 0;
+  @Input() dragMode = 'crop';
+  @Input() toggleDragModeOnDblclick = false;
 
 
   ngOnInit() {
@@ -44,16 +50,17 @@ export class Ng2ImgCropperComponent implements OnInit {
         // maintainAspectRatio: this.maintainAspectRatio,
         aspectRatio: this.aspectRatio,
         selected: this.selected,
-        cropBoxMovable: false,
-        cropBoxResizable: false,
+        cropBoxMovable: this.cropBoxMovable,
+        cropBoxResizable: this.cropBoxResizable,
         responsive: true,
         rotatable : true,
         scalable: true,
-        minCropBoxWidth: 100,
-        minCropBoxHeight: 200,
+        minCropBoxWidth: this.minCropBoxWidth,
+        minCropBoxHeight: this.minCropBoxHeight,
         modal: false,
         originalImage: this.originalImage,
-        dragMode: 'move'
+        dragMode: this.dragMode,
+        toggleDragModeOnDblclick : this.toggleDragModeOnDblclick,
       }
     });
 

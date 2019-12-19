@@ -1,4 +1,4 @@
-# GoBiggi-CropperJs-Wrapper
+# GoBiggi-Cropperjs-Wrapper
 
 This is an image cropping tool made in angular 7 and angular material using the concepts of cropper.js library. It opens the cropper in the dialog along with some default images where the user can either choose the images from the predefined ones he/she can upload it from the local machine.
 
@@ -20,3 +20,9 @@ This is an image cropping tool made in angular 7 and angular material using the 
 6. selected: number - default selected image from the set of default image urls
 7. widthOfCropper: number - width of the cropped image
 8. heightOfCropper: number - height of the cropped image
+9. cropBoxMovable: boolean - whether cropper box is movable
+10. cropBoxResizable: boolean - whether cropper box is resizable
+11. dragMode: 'crop'|'none'|'move' - whether cropper is movale on drag
+12. minCropBoxWidth: number - minimum crop box width
+13. minCropBoxHeight: number - minimum crop box height
+14. originalImage: string - url of the image which you want to prepopulated

@@ -29,6 +29,8 @@ export class ModalComponent implements OnInit {
   public cropper: Cropper;
   xAxisState = 1;
   yAxisState = 1;
+  cropBox;
+  initalSliderValue = 1;
 
 
 
@@ -36,11 +38,13 @@ export class ModalComponent implements OnInit {
     private sanitizer: DomSanitizer, 
     private cd: ChangeDetectorRef,
     private dialogRef: MatDialogRef<ModalComponent> ) {
-    // console.log(this.data);
+    console.log(this.data);
 
     this.originalImage = data.originalImage;
     this.selected.image = data.originalImage ? true : false;
     this.selected.template = data.originalImage ? false: false;
+    this.cropBox = { 'width': data.widthOfCropper, 'height': data.heightOfCropper};
+
 
   }
   // @ViewChild(ImageCropperComponent) imageCropper: ImageCropperComponent;
@@ -151,7 +155,6 @@ private loadBase64Image(imageBase64: string): void {
   onExport() {
     // const canvas = this.angularCropper.getCroppedCanvas();
     console.log(this.data);
-    
 
     this.croppedImage = this.angularCropper.cropper.getCroppedCanvas();
   //  console.log(this.croppedImage);
@@ -185,7 +188,6 @@ private loadBase64Image(imageBase64: string): void {
 //     canvas.width = 100;
 //     canvas.height = 100;
 //     console.log(canvas);
-    
 //     const data = { imageData, cropData };
 
 //     //
@@ -213,4 +215,25 @@ private loadBase64Image(imageBase64: string): void {
 //     });
 // }
 
+  onClearClick(): void {
+    this.originalImage = null;
+    this.selected.image = false;
+    this.selected.template = false;
+
+  }
+
+  onSliderChange(eve): void {
+
+    this.angularCropper.cropper.zoom((eve - this.initalSliderValue) * 0.1);
+    this.initalSliderValue = eve;
+    // console.log(eve);
+    // if (eve > this.initalSliderValue) {
+    //   this.angularCropper.cropper.zoom(0.1 * (eve / this.initalSliderValue));
+    //   this.initalSliderValue = eve;
+    // } else {
+    //   this.angularCropper.cropper.zoom(-0.1 * (this.initalSliderValue / eve));
+    //   this.initalSliderValue = eve;
+    // }
+    // console.log(this.angularCropper.cropper);
+  }
 }

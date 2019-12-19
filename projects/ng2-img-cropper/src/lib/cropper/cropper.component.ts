@@ -40,6 +40,12 @@ export class CropperComponent implements OnInit {
     constructor() { }
 
     ngOnInit() {
+        console.log(this.cropperOptions);
+        console.log(this.cropbox);
+        
+        this.cropbox.width = this.cropperOptions.width;
+        this.cropbox.height = this.cropperOptions.height;
+        
     }
 
     /**
@@ -57,6 +63,7 @@ export class CropperComponent implements OnInit {
         // Setup image element
         const image = ev.target as HTMLImageElement;
         this.imageElement = image;
+        console.log(image.width);
 
         //
         // Add crossOrigin?
@@ -76,6 +83,7 @@ export class CropperComponent implements OnInit {
             //
             // Validate cropbox existance
             if (this.cropbox) {
+                console.log(this.cropbox);
 
                 //
                 // Set cropbox data

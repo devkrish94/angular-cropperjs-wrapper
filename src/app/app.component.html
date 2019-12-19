@@ -1,8 +1,10 @@
 <gobiggi-cropperjs-wrapper [image]='imageURLs'
 (croppedImage)="coverImageData($event)"
-[aspectRatio]='800/1000'
+[aspectRatio] = "400/400"
 [widthOfDialog]='800' 
 [heightOfDialog]='1000'
 [selected]='1'
-[widthOfCropper] = '600'
-[heightOfCropper] = '400'></gobiggi-cropperjs-wrapper>
+[widthOfCropper] = '400'
+[heightOfCropper] = '400'
+[dragMode] = "'move'"
+[cropBoxMovable] = "false"[cropBoxResizable] = "false"></gobiggi-cropperjs-wrapper>
