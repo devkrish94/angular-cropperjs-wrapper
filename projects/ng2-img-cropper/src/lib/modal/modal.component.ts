@@ -30,7 +30,6 @@ export class ModalComponent implements OnInit {
   xAxisState = 1;
   yAxisState = 1;
   cropBox;
-  initalSliderValue = 1;
 
 
 
@@ -220,20 +219,5 @@ private loadBase64Image(imageBase64: string): void {
     this.selected.image = false;
     this.selected.template = false;
 
-  }
-
-  onSliderChange(eve): void {
-
-    this.angularCropper.cropper.zoom((eve - this.initalSliderValue) * 0.1);
-    this.initalSliderValue = eve;
-    // console.log(eve);
-    // if (eve > this.initalSliderValue) {
-    //   this.angularCropper.cropper.zoom(0.1 * (eve / this.initalSliderValue));
-    //   this.initalSliderValue = eve;
-    // } else {
-    //   this.angularCropper.cropper.zoom(-0.1 * (this.initalSliderValue / eve));
-    //   this.initalSliderValue = eve;
-    // }
-    // console.log(this.angularCropper.cropper);
   }
 }
