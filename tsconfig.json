@@ -24,6 +24,12 @@
       ],
       "ng2-img-cropper/*": [
         "dist/ng2-img-cropper/*"
+      ],
+      "angular-cropperjs-wrapper": [
+        "dist/angular-cropperjs-wrapper"
+      ],
+      "angular-cropperjs-wrapper/*": [
+        "dist/angular-cropperjs-wrapper/*"
       ]
     }
   }

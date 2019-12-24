@@ -1,4 +1,4 @@
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
 import { FormsModule } from '@angular/forms';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
@@ -16,7 +16,6 @@ import { HAMMER_GESTURE_CONFIG } from '@angular/platform-browser';
     HttpClientModule,
     CommonModule,
     MatGridListModule,
-    BrowserAnimationsModule,
     MatDialogModule,
     MatSliderModule,
     FormsModule,

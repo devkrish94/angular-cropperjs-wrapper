@@ -169,6 +169,41 @@
           }
         }
       }
+    },
+    "angular-cropperjs-wrapper": {
+      "root": "projects/angular-cropperjs-wrapper",
+      "sourceRoot": "projects/angular-cropperjs-wrapper/src",
+      "projectType": "library",
+      "prefix": "lib",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-ng-packagr:build",
+          "options": {
+            "tsConfig": "projects/angular-cropperjs-wrapper/tsconfig.lib.json",
+            "project": "projects/angular-cropperjs-wrapper/ng-package.json"
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/angular-cropperjs-wrapper/src/test.ts",
+            "tsConfig": "projects/angular-cropperjs-wrapper/tsconfig.spec.json",
+            "karmaConfig": "projects/angular-cropperjs-wrapper/karma.conf.js"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "projects/angular-cropperjs-wrapper/tsconfig.lib.json",
+              "projects/angular-cropperjs-wrapper/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        }
+      }
     }
   },
   "defaultProject": "ng2-img-cropper-app"
