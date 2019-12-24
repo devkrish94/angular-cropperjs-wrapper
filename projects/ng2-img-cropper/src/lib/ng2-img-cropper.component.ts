@@ -40,8 +40,10 @@ export class Ng2ImgCropperComponent implements OnInit {
   openDialog() {
 
     const dialogRef = this.dialog.open(ModalComponent, {
-      width: window.innerWidth<960 ? this.widthOfDialog +'%' : '50%',
-      height: window.innerHeight<960 ? this.heightOfDialog +'%' : '80%',
+      width: window.innerWidth<960 ? this.widthOfDialog +'%' : '100%',
+      maxWidth: window.innerWidth<960 ? this.widthOfDialog +'vw' : '100vw',
+      height: window.innerHeight<960 ? this.heightOfDialog +'%' : '100%',
+      panelClass: 'image-cropper-modal-ui',
       data: {
         image: this.image,
         width: this.widthOfCropper,
@@ -61,6 +63,7 @@ export class Ng2ImgCropperComponent implements OnInit {
         originalImage: this.originalImage,
         dragMode: this.dragMode,
         toggleDragModeOnDblclick : this.toggleDragModeOnDblclick,
+        zoomOnWheel : false
       }
     });
 

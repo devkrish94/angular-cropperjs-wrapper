@@ -5,7 +5,6 @@ import { ModalComponent } from './modal.component';
 import { CommonModule } from '@angular/common';
 import { MatGridListModule, MatDialogModule, MatSliderModule } from '@angular/material';
 import { BrowserModule } from '@angular/platform-browser';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
@@ -15,7 +14,6 @@ import { HttpClientModule } from '@angular/common/http';
 ],
   imports: [
     BrowserModule,
-    BrowserAnimationsModule,
     HttpClientModule,
     CommonModule,
     MatGridListModule,
