@@ -10,13 +10,16 @@
         }
     }
     .upload-btn {
-        position: relative;
-        height: 40px;
-        width: 180px;
-        text-align: center;
-        margin: 20px auto;
-        overflow: hidden;
-        cursor: pointer;
+      position: relative;
+      height: 32px;
+      width: 120px;
+      text-align: center;
+      overflow: hidden;
+      cursor: pointer;
+      background-color: #4c5262;
+      border-radius: 2px;
+      line-height: 32px;
+      margin-right: 10px;
         input {
             position: absolute;
             z-index: 2;
@@ -32,6 +35,8 @@
             left: 0;
             top: 0;
             width: 100%;
+            color: #ffffff;
+            margin: 0;
             i {
                 height: 35px;
                 width: 35px;
@@ -50,6 +55,9 @@
                 color: #0393D4;
             }
         }
+        &:hover {
+          background-color: #434750;
+        }
     }
     .border-bottom {
         border: none;
@@ -57,21 +65,22 @@
     }
     h5 {
         font-size: 18px;
-        margin: 25px 5px 15px 5px;
+        margin: 25px 5px 5px 5px;
         font-weight: 400;
+        color: #ffffff;
     }
     .mat-grid-list {
         margin-bottom: 30px;
     }
     .image-library {
-        padding: 0 10px;
+        padding: 0;
         .image-list {
             flex: 1 1 100%;
             box-sizing: border-box;
             max-width: 23%;
             display: inline-block;
             position: relative;
-            margin: 5px;
+            margin: 1%;
             .mat-icon {
                 display: none;
             }
@@ -123,7 +132,7 @@
             border-radius: 2px;
             cursor: pointer;
             &:hover {
-                background-color: #000;
+              background-color: #484a4e;
             }
             &.upload-btn-color {
                 background-color: #03a9f5;
@@ -135,7 +144,7 @@
         .dialog-close {
           position: absolute;
           top: 15px;
-          right: 15px;
+          right: 20px;
           font-size: 24px;
           background-color: transparent;
           color: #636363;
@@ -148,20 +157,26 @@
         margin: 20px 20px 10px 20px !important;
         text-align: center;
         button {
-            background-color: #4c5262;
-            padding: 8px 10px;
-            font-size: 12px;
-            color: #fff;
-            border: 0;
-            margin-right: 5px;
-            -webkit-border-radius: 2px;
-            -moz-border-radius: 2px;
-            border-radius: 2px;
-            cursor: pointer;
-            &:hover {
-                background-color: #434750;
-            }
-        }
+          background-color: #4c5262;
+          padding: 8px 10px;
+          font-size: 16px;
+          color: #fff;
+          border: 0;
+          margin-right: 5px;
+          -webkit-border-radius: 2px;
+          -moz-border-radius: 2px;
+          border-radius: 2px;
+          font-weight: 100;
+          cursor: pointer;
+          &:hover {
+              background-color: #434750;
+          }
+      }
+      .btn-zoom {
+        padding: 5px 10px;
+        position: relative;
+        top: 3px;
+      }
     }
 }
 @media only screen and (max-width: 600px) {

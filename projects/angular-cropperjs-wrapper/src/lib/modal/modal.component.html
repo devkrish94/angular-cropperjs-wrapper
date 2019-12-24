@@ -1,31 +1,25 @@
 <div class="upload-modal-container">
   <!-- <div class="title">
-    <h4>Upload Image</h4>
-  </div> -->
-  <div class="upload-btn" *ngIf="!originalImage">
-    <input type="file" (change)="fileChangeEvent($event)"
-    name='fileName' accept="image/*" #fileType />
-    <div class="btn">
-      <i>+</i>
-      <span>Upload Photo</span>
-    </div>
+     <h4>Upload Image</h4>
+     </div> -->
+
+  <div>
+     <mat-dialog-actions align="start">
+        <div class="upload-btn" *ngIf="!originalImage">
+          <input type="file" (change)="fileChangeEvent($event)" name='fileName' accept="image/*" #fileType />
+          <p class="btn">Upload Photo</p>
+        </div>
+        <button mat-button *ngIf="selected.image" (click)="onClearClick()">Back</button>
+        <button *ngIf="selected.image" mat-button (click)="onExport()" cdkFocusInitial class="upload-btn-color">Save</button>
+        <button *ngIf="selected.template" class="upload-btn-color"
+        mat-button [mat-dialog-close]="croppedImage"
+        cdkFocusInitial>Save</button>
+        <button mat-button mat-dialog-close class="dialog-close" align="end">X</button>
+     </mat-dialog-actions>
   </div>
-<div>
-  <mat-dialog-actions align="start">
-    <button mat-button *ngIf="selected.image" (click)="onClearClick()">Back</button>
-    <button *ngIf="selected.image" mat-button (click)="onExport()" cdkFocusInitial class="upload-btn-color">Save</button>
-    <button *ngIf="selected.template"
-    mat-button [mat-dialog-close]="croppedImage"
-    cdkFocusInitial>Select</button>
-    <button mat-button mat-dialog-close class="dialog-close" align="end">
-      X
-    </button>
-  </mat-dialog-actions>
-</div>
   <div *ngIf="!isValidImage" style="text-align: center; color: #ff0000">Invalid file type</div>
   <div>
-
-    <!-- <image-cropper
+     <!-- <image-cropper
         [imageChangedEvent]="imageChangedEvent"
         [maintainAspectRatio]="data.maintainAspectRatio"
         [aspectRatio]="data.aspectRatio"
@@ -43,43 +37,32 @@
         [style.display]="showCropper ? null : 'none'"
         [widthOfCropper]="data.width"
         [heightOfCropper]="data.height"
-    ></image-cropper> -->
-    <angular-cropper *ngIf = "originalImage" #angularCropper
-      [cropperOptions] = "data"
-      [cropbox] = "cropBox"
-      [imageUrl] ="originalImage.src ? originalImage.src : originalImage" (touchstart)="cropperTouchStart($event)"
-       ></angular-cropper>
+        ></image-cropper> -->
+     <angular-cropper *ngIf = "originalImage" #angularCropper
+     [cropperOptions] = "data"
+     [cropbox] = "cropBox"
+     [imageUrl] ="originalImage.src ? originalImage.src : originalImage" (touchstart)="cropperTouchStart($event)"
+     ></angular-cropper>
   </div>
   <div class="event-btn" *ngIf="originalImage">
-    <button (click)="angularCropper.cropper.zoom(0.1)">
-      <span class="s-36 mat-icon material-icons primary-50-fg">zoom_in</span>
-    </button>
     <button (click)="angularCropper.cropper.zoom(-0.1)">
-      <span class="s-36 mat-icon material-icons primary-50-fg">zoom_out</span>
+      <span class="s-36 mat-icon material-icons primary-50-fg btn-zoom btn-zoom-out">zoom_out</span>
     </button>
-    <br>
-    <br>
+    <button (click)="angularCropper.cropper.zoom(0.1)" class="mr-16">
+      <span class="s-36 mat-icon material-icons primary-50-fg btn-zoom btn-zoom-in">zoom_in</span>
+    </button>
     <button (click)="rotateRight()">Rotate</button>
     <button (click)="flipHorizontal()">Flip horizontal</button>
     <button (click)="flipVertical()">Flip vertical</button>
   </div>
-
-<div *ngIf="data.image!== '' ">
-  <div *ngIf="!selected.image" class="image-library" fxFlex="1 0 auto" fxLayout="column">
-    <h5 >Choose from library</h5>
-      <div cols="3" rowHeight="1:1.5" gutterSize="10px">
+  <div *ngIf="data.image!== '' ">
+    <div *ngIf="!selected.image" class="image-library" fxFlex="1 0 auto" fxLayout="column">
+        <h5 >Choose from library</h5>
+        <div cols="3" rowHeight="1:1.5" gutterSize="10px">
           <div class="image-list" [ngClass]="{'selected': croppedImage === i }" *ngFor="let template of data.image; let i=index;" (click)="onTemplateChange(i)"><img [src]="template.url"/>
-            <a class="s-36 mat-icon material-icons primary-50-fg">check_circle</a>
-          </div>
+          <a class="s-36 mat-icon material-icons primary-50-fg">check_circle</a>
+        </div>
       </div>
+    </div>
   </div>
-</div>
-
-  <!-- <hr class="border-bottom" *ngIf="data.image!== ''"> -->
-
-  <!-- <div *ngFor="let item of data" >
-    <img [src]='item.url' alt='abc'>
-  </div> -->
-
-  <!-- <p>{{ croppedImage }}</p> -->
 </div>

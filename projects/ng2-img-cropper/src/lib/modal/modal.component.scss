@@ -59,6 +59,7 @@
         font-size: 18px;
         margin: 25px 5px 15px 5px;
         font-weight: 400;
+        color: #ffffff;
     }
     .mat-grid-list {
         margin-bottom: 30px;
@@ -123,7 +124,7 @@
             border-radius: 2px;
             cursor: pointer;
             &:hover {
-                background-color: #000;
+                background-color: #484a4e;
             }
             &.upload-btn-color {
                 background-color: #03a9f5;
@@ -135,7 +136,7 @@
         .dialog-close {
           position: absolute;
           top: 15px;
-          right: 15px;
+          right: 20px;
           font-size: 24px;
           background-color: transparent;
           color: #636363;
@@ -150,17 +151,23 @@
         button {
             background-color: #4c5262;
             padding: 8px 10px;
-            font-size: 12px;
+            font-size: 16px;
             color: #fff;
             border: 0;
             margin-right: 5px;
             -webkit-border-radius: 2px;
             -moz-border-radius: 2px;
             border-radius: 2px;
+            font-weight: 100;
             cursor: pointer;
             &:hover {
                 background-color: #434750;
             }
+        }
+        .btn-zoom {
+          padding: 5px 10px;
+          position: relative;
+          top: 3px;
         }
     }
 }

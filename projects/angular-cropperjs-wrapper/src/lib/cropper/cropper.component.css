@@ -10,7 +10,8 @@
 
 .cropper-wrapper {
     position: relative;
-    min-height: 80px
+    min-height: 80px;
+    margin-top: 15px;
 }
 
 .cropper-wrapper .loading-block {

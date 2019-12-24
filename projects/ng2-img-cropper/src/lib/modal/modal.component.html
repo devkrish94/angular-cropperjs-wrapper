@@ -2,21 +2,22 @@
   <!-- <div class="title">
     <h4>Upload Image</h4>
   </div> -->
-  <div class="upload-btn" *ngIf="!originalImage">
-    <input type="file" (change)="fileChangeEvent($event)"
-    name='fileName' accept="image/*" #fileType />
-    <div class="btn">
-      <i>+</i>
-      <span>Upload Photo</span>
-    </div>
-  </div>
+
 <div>
   <mat-dialog-actions align="start">
     <button mat-button *ngIf="selected.image" (click)="onClearClick()">Back</button>
     <button *ngIf="selected.image" mat-button (click)="onExport()" cdkFocusInitial class="upload-btn-color">Save</button>
     <button *ngIf="selected.template"
     mat-button [mat-dialog-close]="croppedImage"
-    cdkFocusInitial>Select</button>
+    cdkFocusInitial>Save</button>
+    <div class="upload-btn" *ngIf="!originalImage">
+      <input type="file" (change)="fileChangeEvent($event)"
+      name='fileName' accept="image/*" #fileType />
+      <div class="btn">
+        <!-- <i>+</i> -->
+        <span>Upload Photo</span>
+      </div>
+    </div>
     <button mat-button mat-dialog-close class="dialog-close" align="end">
       X
     </button>
@@ -24,26 +25,6 @@
 </div>
   <div *ngIf="!isValidImage" style="text-align: center; color: #ff0000">Invalid file type</div>
   <div>
-
-    <!-- <image-cropper
-        [imageChangedEvent]="imageChangedEvent"
-        [maintainAspectRatio]="data.maintainAspectRatio"
-        [aspectRatio]="data.aspectRatio"
-
-        [resizeToWidth]="data.imageSize"
-        [cropperMinWidth]="128"
-        [onlyScaleDown]="true"
-        [roundCropper]="false"
-        format="png"
-        outputType="base64"
-        (imageCropped)="imageCropped($event)"
-        (imageLoaded)="imageLoaded()"
-        (cropperReady)="cropperReady()"
-        (loadImageFailed)="loadImageFailed()"
-        [style.display]="showCropper ? null : 'none'"
-        [widthOfCropper]="data.width"
-        [heightOfCropper]="data.height"
-    ></image-cropper> -->
     <angular-cropper *ngIf = "originalImage" #angularCropper
       [cropperOptions] = "data"
       [cropbox] = "cropBox"
@@ -51,17 +32,15 @@
        ></angular-cropper>
   </div>
   <div class="event-btn" *ngIf="originalImage">
-    <button (click)="angularCropper.cropper.zoom(0.1)">
-      <span class="s-36 mat-icon material-icons primary-50-fg">zoom_in</span>
-    </button>
     <button (click)="angularCropper.cropper.zoom(-0.1)">
-      <span class="s-36 mat-icon material-icons primary-50-fg">zoom_out</span>
+      <span class="s-36 mat-icon material-icons primary-50-fg font-size-24 btn-zoom btn-zoom-out">zoom_out</span>
     </button>
-    <br>
-    <br>
+    <button (click)="angularCropper.cropper.zoom(0.1)">
+      <span class="s-36 mat-icon material-icons primary-50-fg font-size-24 btn-zoom btn-zoom-in">zoom_in</span>
+    </button>
     <button (click)="rotateRight()">Rotate</button>
-    <button (click)="flipHorizontal()">Flip horizontal</button>
-    <button (click)="flipVertical()">Flip vertical</button>
+    <button (click)="flipHorizontal()">Flip Horizontal</button>
+    <button (click)="flipVertical()">Flip Vertical</button>
   </div>
 
 <div *ngIf="data.image!== '' ">
