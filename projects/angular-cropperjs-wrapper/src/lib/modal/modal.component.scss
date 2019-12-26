@@ -163,19 +163,25 @@
           color: #fff;
           border: 0;
           margin-right: 5px;
-          -webkit-border-radius: 2px;
-          -moz-border-radius: 2px;
-          border-radius: 2px;
+          -webkit-border-radius: 3px;
+          -moz-border-radius: 3px;
+          border-radius: 3px;
           font-weight: 100;
           cursor: pointer;
           &:hover {
               background-color: #434750;
           }
       }
+      .btn-zom {
+        padding: 5px 10px;
+        position: relative;
+        top: 2px;
+      }
       .btn-zoom {
         padding: 5px 10px;
         position: relative;
-        top: 3px;
+        top: 3px; */
+        font-size: 21px;
       }
     }
 }
