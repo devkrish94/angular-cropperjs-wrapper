@@ -176,12 +176,13 @@
         padding: 5px 10px;
         position: relative;
         top: 2px;
-      }
-      .btn-zoom {
-        padding: 5px 10px;
-        position: relative;
-        top: 3px; */
-        font-size: 21px;
+        .btn-zoom {
+          padding: 0;
+          position: relative;
+          top: 2px;
+          font-size: 21px;
+          width: 21px;
+        }
       }
     }
 }
