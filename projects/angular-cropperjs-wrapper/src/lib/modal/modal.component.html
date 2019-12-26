@@ -11,9 +11,7 @@
         </div>
         <button mat-button *ngIf="selected.image" (click)="onClearClick()">Back</button>
         <button *ngIf="selected.image" mat-button (click)="onExport()" cdkFocusInitial class="upload-btn-color">Save</button>
-        <button *ngIf="selected.template" class="upload-btn-color"
-        mat-button [mat-dialog-close]="croppedImage"
-        cdkFocusInitial>Save</button>
+        <button *ngIf="selected.template" class="upload-btn-color" mat-button [mat-dialog-close]="croppedImage" cdkFocusInitial>Save</button>
         <button mat-button mat-dialog-close class="dialog-close" align="end">X</button>
      </mat-dialog-actions>
   </div>
@@ -45,10 +43,10 @@
      ></angular-cropper>
   </div>
   <div class="event-btn" *ngIf="originalImage">
-    <button (click)="angularCropper.cropper.zoom(-0.1)">
+    <button (click)="angularCropper.cropper.zoom(-0.1)" class="btn-zom">
       <span class="s-36 mat-icon material-icons primary-50-fg btn-zoom btn-zoom-out">zoom_out</span>
     </button>
-    <button (click)="angularCropper.cropper.zoom(0.1)" class="mr-16">
+    <button (click)="angularCropper.cropper.zoom(0.1)" class="mr-16" class="btn-zom">
       <span class="s-36 mat-icon material-icons primary-50-fg btn-zoom btn-zoom-in">zoom_in</span>
     </button>
     <button (click)="rotateRight()">Rotate</button>
