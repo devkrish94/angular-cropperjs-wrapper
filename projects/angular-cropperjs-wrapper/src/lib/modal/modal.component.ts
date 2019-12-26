@@ -107,6 +107,7 @@ private loadBase64Image(imageBase64: string): void {
   //     this.cd.markForCheck();
   // };
   this.originalImage.src = imageBase64;
+  console.log(this.originalImage);
 }
   // imageCropped(event: ImageCroppedEvent) {
   //   this.croppedImage = event.base64;

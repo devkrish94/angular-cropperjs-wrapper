@@ -41,11 +41,11 @@ export class CropperComponent implements OnInit {
 
     ngOnInit() {
         console.log(this.cropperOptions);
-        console.log(this.cropbox);
+        
         
         this.cropbox.width = this.cropperOptions.width;
         this.cropbox.height = this.cropperOptions.height;
-        
+        console.log(this.cropbox);
     }
 
     /**
