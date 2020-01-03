@@ -10,7 +10,8 @@ This is an image cropping tool made in angular 7 and angular material using the 
 
 Add the AngularCropperjsWrapperModule to the imports of the module which will be using the Image Cropper.
 
-```import { AngularCropperjsWrapperModule } from 'angular-cropperjs-wrapper';
+```
+import { AngularCropperjsWrapperModule } from 'angular-cropperjs-wrapper';
 @NgModule({
     imports: [
         ...
@@ -27,11 +28,13 @@ Add the AngularCropperjsWrapperModule to the imports of the module which will be
     ]
 })
 export class YourModule {
-}```
+}
+```
 
 Add the element to your HTML:
 
-```<lib-angular-cropperjs-wrapper [image]='imageURLs'
+```
+<lib-angular-cropperjs-wrapper [image]='imageURLs'
 (croppedImage)="coverImageData($event)"
 [aspectRatio] = "1920/430"
 [widthOfDialog]='800' 
@@ -46,7 +49,8 @@ Add the element to your HTML:
 ```
 And add this to your ts file:
 
-```coverImageData(event) {
+```
+coverImageData(event) {
     .....
 
   }
