@@ -45,7 +45,7 @@ export class CropperComponent implements OnInit {
         
         this.cropbox.width = this.cropperOptions.width;
         this.cropbox.height = this.cropperOptions.height;
-        console.log(this.cropbox);
+        // console.log(this.cropbox);
     }
 
     /**
@@ -54,7 +54,7 @@ export class CropperComponent implements OnInit {
      */
     imageLoaded(ev: Event) {
 
-        console.log(ev);
+        // console.log(ev);
         
         //
         // Unset load error state
@@ -95,7 +95,7 @@ export class CropperComponent implements OnInit {
                 this.cropbox.left = (this.cropper.getContainerData().width - image.width)/2 +  (image.width - this.cropbox.width)/2;
                 this.cropbox.top = (this.cropper.getContainerData().height - image.height)/2 +  (image.height - this.cropbox.height)/2;
 
-                console.log(this.cropbox);
+                // console.log(this.cropbox);
                 this.cropper.setCropBoxData(this.cropbox);
             }
         });
@@ -148,7 +148,7 @@ export class CropperComponent implements OnInit {
 
         //
         // Get and set image, crop and canvas data
-        const imageData = this.cropper.getImageData();
+        const imageData = this.cropper.getImageData(); 
         const cropData = this.cropper.getCropBoxData();
         const canvas = this.cropper.getCroppedCanvas();
         // canvas.width = 100;
